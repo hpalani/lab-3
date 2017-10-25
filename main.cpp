@@ -29,6 +29,7 @@ void HALFADDER(int firstBit, int secondBit);
 string FULLADDER(string first, string second);
 
 int main() {
+    // Run the addition procedure 4 times
     for (int i = 0; i < 4; i++) {
         cout << "\nROUND "
              << i + 1
@@ -36,30 +37,33 @@ int main() {
         
         string p, q;
         
+        // Accept first binary term for addition
         cout << "\nBinary Term #1"
              << endl;
         getline(cin, p);
         p = removeSpaces(p);
         
-        while (!isBinary(p)) {
+        while (!isBinary(p)) { // Catch non-binary input
             cout << "\nPlease enter a valid binary term."
                  << endl;
             getline(cin, p);
             p = removeSpaces(p);
         }
         
+        // Accept second binary term for addition
         cout << "\nBinary Term #2"
              << endl;
         getline(cin, q);
         q = removeSpaces(q);
         
-        while (!isBinary(q)) {
+        while (!isBinary(q)) { // Catch non-binary input
             cout << "\nPlease enter a valid binary term."
                  << endl;
             getline(cin, q);
             q = removeSpaces(q);
         }
         
+        // Output addition result
         cout << "\nThe answer is "
              << reformatBinaryString(FULLADDER(p, q))
              << "."
@@ -122,6 +126,7 @@ string FULLADDER(string first, string second) {
     return result;
 }
 
+// Devise binary strings of equal lengths
 int equalize(string &str1, string &str2) {
     int len1 = str1.size();
     int len2 = str2.size();
@@ -140,6 +145,7 @@ int equalize(string &str1, string &str2) {
     return len1;
 }
 
+// Check if input string is binary
 bool isBinary(string str) {
     bool isBinary = true;
     for (int i = 0; i < str.length(); i++) {
@@ -150,11 +156,13 @@ bool isBinary(string str) {
    return isBinary;
 }
 
+// Remove spaces from a string
 string removeSpaces(string str) {
     str.erase(remove(str.begin(), str.end(), ' '), str.end());
     return str;
 }
 
+// Add spaces every 4 bits
 string reformatBinaryString(const string &str) {
    if (!str.size()) {
        return "";
